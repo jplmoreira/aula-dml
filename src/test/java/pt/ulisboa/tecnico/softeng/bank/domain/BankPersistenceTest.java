@@ -36,6 +36,7 @@ public class BankPersistenceTest {
         Account account2 = bank.getAccountByIBAN("BK012");
         assertEquals(100, account1.getBalance());
         assertEquals(50, account2.getBalance());
+        assertEquals(150, bank.totalBalance());
 	}
 
 	@After

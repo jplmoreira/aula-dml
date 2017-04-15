@@ -33,4 +33,11 @@ public class Bank extends Bank_Base {
                 return account;
         return null;
     }
+
+    public int totalBalance() {
+        int balance = 0;
+        for (Account account : getAccountSet())
+            balance += account.getBalance();
+        return balance;
+    }
 }
