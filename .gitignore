@@ -4,3 +4,4 @@ classpath
 .settings
 target
 src/main/resources/fenix-framework.properties
+.DS_Store
