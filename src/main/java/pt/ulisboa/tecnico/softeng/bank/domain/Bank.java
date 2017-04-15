@@ -13,7 +13,8 @@ public class Bank extends Bank_Base {
 
 	public void delete() {
 		setRoot(null);
-
+        for (Account account : this.getAccountSet())
+            account.delete();
 		deleteDomainObject();
 	}
 
