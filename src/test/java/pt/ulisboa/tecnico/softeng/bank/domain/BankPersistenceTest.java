@@ -19,8 +19,8 @@ public class BankPersistenceTest {
 	@Atomic(mode = TxMode.WRITE)
 	public void atomicProcess() {
 		Bank bank = new Bank("Money", "BK01");
-        Account account1 = new Account(bank);
-        Account account2 = new Account(bank, 100);
+        Account account1 = new WithdrawalAccount(bank);
+        Account account2 = new WithdrawalAccount(bank, 100);
         Account account3 = new SavingsAccount(bank);
         Account account4 = new SavingsAccount(bank, 100);
         account1.deposit(100);

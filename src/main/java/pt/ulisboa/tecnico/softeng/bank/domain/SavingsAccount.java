@@ -2,10 +2,6 @@ package pt.ulisboa.tecnico.softeng.bank.domain;
 
 public class SavingsAccount extends SavingsAccount_Base {
 
-    public SavingsAccount() {
-        super();
-    }
-    
     public SavingsAccount(Bank bank) {
         setIBAN(bank.getCode() + ++Account.counter);
         setBalance(0);
