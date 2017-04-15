@@ -27,4 +27,10 @@ public class Bank extends Bank_Base {
 		return null;
 	}
 
+    public Account getAccountByIBAN(String IBAN) {
+        for (Account account : getAccountSet())
+            if (account.getIBAN().equals(IBAN))
+                return account;
+        return null;
+    }
 }
