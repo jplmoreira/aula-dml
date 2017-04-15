@@ -2,7 +2,11 @@ package pt.ulisboa.tecnico.softeng.bank.domain;
 
 public class Account extends Account_Base {
 
-    private static int counter = 0;
+    protected static int counter = 0;
+    
+    public Account() {
+        super();
+    }
     
     public Account(Bank bank) {
         setIBAN(bank.getCode() + ++Account.counter);

@@ -19,6 +19,8 @@ class Account {
     int balance;
 }
 
+class SavingsAccount extends Account;
+
 relation BankHasAccount {
     Bank playsRole bank {
         multiplicity 1..1;

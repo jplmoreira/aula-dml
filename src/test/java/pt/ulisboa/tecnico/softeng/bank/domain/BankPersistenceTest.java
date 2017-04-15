@@ -21,8 +21,14 @@ public class BankPersistenceTest {
 		Bank bank = new Bank("Money", "BK01");
         Account account1 = new Account(bank);
         Account account2 = new Account(bank, 100);
+        Account account3 = new SavingsAccount(bank);
+        Account account4 = new SavingsAccount(bank, 100);
         account1.deposit(100);
         account2.withdraw(50);
+        account3.deposit(100);
+        account3.deposit(50);
+        account4.withdraw(50);
+        account4.withdraw(100);
 	}
 
 	@Atomic(mode = TxMode.READ)
@@ -31,12 +37,16 @@ public class BankPersistenceTest {
 
 		assertEquals("Money", bank.getName());
 
-        assertEquals(2, bank.getAccountSet().size());
+        assertEquals(4, bank.getAccountSet().size());
         Account account1 = bank.getAccountByIBAN("BK011");
         Account account2 = bank.getAccountByIBAN("BK012");
+        Account account3 = bank.getAccountByIBAN("BK013");
+        Account account4 = bank.getAccountByIBAN("BK014");
         assertEquals(100, account1.getBalance());
         assertEquals(50, account2.getBalance());
-        assertEquals(150, bank.totalBalance());
+        assertEquals(250, bank.totalBalance());
+        assertEquals(100, account3.getBalance());
+        assertEquals(0, account4.getBalance());
 	}
 
 	@After
