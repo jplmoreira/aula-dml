@@ -19,7 +19,10 @@ public class BankPersistenceTest {
 	@Atomic(mode = TxMode.WRITE)
 	public void atomicProcess() {
 		Bank bank = new Bank("Money", "BK01");
-        new Account("A01", bank);
+        Account account1 = new Account(bank);
+        Account account2 = new Account(bank, 100);
+        account1.deposit(100);
+        account2.withdraw(50);
 	}
 
 	@Atomic(mode = TxMode.READ)
@@ -28,10 +31,11 @@ public class BankPersistenceTest {
 
 		assertEquals("Money", bank.getName());
 
-        assertEquals(1, bank.getAccountSet().size());
-        for (Account account : bank.getAccountSet()) {
-            assertEquals("A01", account.getName());
-        }
+        assertEquals(2, bank.getAccountSet().size());
+        Account account1 = bank.getAccountByIBAN("BK011");
+        Account account2 = bank.getAccountByIBAN("BK012");
+        assertEquals(100, account1.getBalance());
+        assertEquals(50, account2.getBalance());
 	}
 
 	@After

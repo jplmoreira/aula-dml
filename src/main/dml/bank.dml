@@ -15,7 +15,8 @@ relation DomainRootHasBankApplication {
 }
 
 class Account {
-    String name;
+    String IBAN;
+    int balance;
 }
 
 relation BankHasAccount {
